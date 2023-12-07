@@ -5,21 +5,21 @@ import styled from 'styled-components';
 import { COLORS } from '../../constants';
 import VisuallyHidden from '../VisuallyHidden';
 
-const WrapperBase = styled.div`
-  width: 100%;
-  border-radius: 4px;
-  box-shadow: inset 0px 2px 4px ${COLORS.transparentGray35};
-  overflow: hidden;
-`;
-
-const Size = {
-  large: `--height: 24px; --padding: 4px;`,
-  medium: `--height: 16px; --padding: 0;`,
-  small: `--height: 8px; --padding: 0;`,
+const SIZES = {
+  large: `--height: 24px; --padding: 4px; --radius: 8px;`,
+  medium: `--height: 12px; --padding: 0; --radius: 4px;`,
+  small: `--height: 8px; --padding: 0; --radius: 4px;`,
 };
 
+const WrapperBase = styled.div`
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: inset 0px 2px 4px ${COLORS.transparentGray35};
+  overflow: hidden; /*Trims corners when progressbar is nearly full.*/
+`;
+
 const Wrapper = styled(WrapperBase)`
-  ${({ size }) => Size[size]}
+  ${({ size }) => SIZES[size]};
   height: var(--height);
   padding: var(--padding);
 `;
